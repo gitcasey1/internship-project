@@ -1,6 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.wait import WebDriverWait
+
+from app.application import Application
 
 
 def browser_init(context):
@@ -15,6 +18,9 @@ def browser_init(context):
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
+    context.wait = WebDriverWait(context.driver, timeout=15)
+
+    context.app = Application(context.driver)
 
 
 def before_scenario(context, scenario):
@@ -29,6 +35,7 @@ def before_step(context, step):
 def after_step(context, step):
     if step.status == 'failed':
         print('\nStep failed: ', step)
+        #context.app.base_page.save_screenshot(step)
 
 
 def after_scenario(context, feature):
