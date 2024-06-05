@@ -16,12 +16,15 @@ class SecondaryPage(BasePage):
 
     def click_filters_button(self):
         self.click(*self.FILTERS_BUTTON)
+        # self.wait_until_clickable_click(*self.FILTERS_BUTTON)
 
     def from_field(self, amount):
         self.input_text(amount,*self.AED_FROM_FIELD)
+        # self.wait_until_visible(*self.AED_FROM_FIELD)
 
     def to_field(self, amount):
         self.input_text(amount,*self.AED_TO_FIELD)
+        # self.wait_until_visible(*self.AED_TO_FIELD)
 
     def click_apply_filter_button(self):
         # self.click(*self.APPLY_FILTER_BUTTON)

@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 from time import sleep
 
@@ -40,25 +41,29 @@ def verify_right_page_opens(context):
 
 @when('Click Filters button at top center of page')
 def click_filters_button(context):
-    sleep(10)
+    sleep(5)
+    # context.wait.until(EC.element_to_be_clickable((By.XPATH, "//div[text()='Filters']")))
     context.app.secondary_page.click_filters_button()
 
 
 @when('Input Unit price (AED) from {from_price}')
 def input_unit_from(context, from_price):
-    sleep(10)
+    sleep(5)
+    # context.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[wized='unitPriceFromFilter']")))
     context.app.secondary_page.from_field(from_price)
 
 
 @when('Input Unit price (AED) to {to_price}')
 def input_unit_to(context, to_price):
-    sleep(10)
+    sleep(5)
+    # context.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[wized='unitPriceToFilter']")))
     context.app.secondary_page.to_field(to_price)
 
 
 @when('Click Apply filter button')
 def click_apply_filter(context):
     sleep(10)
+    # context.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a[wized='applyFilterButtonMLS']")))
     context.app.secondary_page.click_apply_filter_button()
     sleep(2)
 
