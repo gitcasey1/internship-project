@@ -7,15 +7,18 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from app.application import Application
 
+#  Run Behave tests with Allure results
+# behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/target_app_ui_tests.feature
+
 
 def browser_init(context, scenario_name):
     """
     :param context: Behave context
     """
     # Chrome Browser #
-    # driver_path = ChromeDriverManager().install()
-    # service = Service(driver_path)
-    # context.driver = webdriver.Chrome(service=service)
+    driver_path = ChromeDriverManager().install()
+    service = Service(driver_path)
+    context.driver = webdriver.Chrome(service=service)
 
     # Firefox Browser #
     # driver_path = GeckoDriverManager().install()
@@ -34,19 +37,19 @@ def browser_init(context, scenario_name):
 
     ### BROWSERSTACK ###
     # Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
-    bs_user = 'kyle_0AWCZT'
-    bs_key = 'oyfoyxsb1yBrpqpeupKh'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # bs_user = 'kyle_0AWCZT'
+    # bs_key = 'oyfoyxsb1yBrpqpeupKh'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
 
-    options = Options()
-    bstack_options = {
-        'os': 'OS X',
-        'osVersion': 'Monterey',
-        'browserName': 'Chrome',
-        'sessionName': scenario_name
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    # options = Options()
+    # bstack_options = {
+    #    'os': 'OS X',
+    #    'osVersion': 'Monterey',
+    #    'browserName': 'Chrome',
+    #    'sessionName': scenario_name
+    # }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.maximize_window()
 
