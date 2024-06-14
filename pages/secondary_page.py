@@ -10,6 +10,7 @@ class SecondaryPage(BasePage):
     AED_TO_FIELD = (By.CSS_SELECTOR, "input[wized='unitPriceToFilter']")
     APPLY_FILTER_BUTTON = (By.CSS_SELECTOR, "a[wized='applyFilterButtonMLS']")
     PRICES = (By.XPATH, "//div[@class='price-aed-block']")
+    MOBILE_WEB_LISTINGS_AGENTS = (By.CSS_SELECTOR, "div.proparties_text_block.secondary")
 
     def verify_all_listings(self):
         self.wait_until_visible(*self.SECONDARY_ALL_LISTINGS)
@@ -38,3 +39,6 @@ class SecondaryPage(BasePage):
         for price in all_prices:
             price = int(price.text.replace("AED", "").replace(",", "").strip())
             assert from_price <= price <= to_price, f"Price {price} is not in the expected range."
+
+    def verify_mobile_listings_agents(self):
+        self.wait_until_visible(*self.MOBILE_WEB_LISTINGS_AGENTS)

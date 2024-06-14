@@ -31,12 +31,14 @@ def log_in(context):
 
 @when('Click on Secondary option at the left side menu')
 def click_secondary_option(context):
-    context.app.left_side_menu.click_secondary_option()
+    # context.app.left_side_menu.click_secondary_option()
+    context.app.left_side_menu.click_mobile_secondary_option() # for the mobile web testing
 
 
 @then('Verify the right page opens')
 def verify_right_page_opens(context):
-    context.app.secondary_page.verify_all_listings()
+    # context.app.secondary_page.verify_all_listings()
+    context.app.secondary_page.verify_mobile_listings_agents() # for the mobile web testing
 
 
 @when('Click Filters button at top center of page')
